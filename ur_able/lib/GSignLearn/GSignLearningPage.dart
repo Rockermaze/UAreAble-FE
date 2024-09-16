@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'ESignLearningg.dart';
-import 'EAlphabet.dart';
+import 'GSignLearninggg.dart';
+import 'GAlphabet.dart';
 
-class ESignLearningPage extends StatefulWidget {
+class GSignLearningPage extends StatefulWidget {
   @override
-  _ESignLearningPageState createState() => _ESignLearningPageState();
+  _GSignLearningPageState createState() => _GSignLearningPageState();
 }
 
-class _ESignLearningPageState extends State<ESignLearningPage> {
+class _GSignLearningPageState extends State<GSignLearningPage> {
   double _progress = 0.0;
-  final int totalLetters = 26; // A to Z
-  List<bool> _isTickedList = List<bool>.filled(26, false); // List to track tick button states
+  final int totalLetters = 22; // Number of letters with 12 files
+  List<bool> _isTickedList = List<bool>.filled(22, false); // List to track tick button states
+
+  final List<String> gujaratiLetters = [
+    'ક', 'ખ', 'ગ', 'ઘ', 'ઙ', 'ચ', 'છ', 'જ', 'ણ', 'ત', 'થ', 'દ',
+    'ધ', 'ન', 'પ', 'ફ', 'બ', 'ભ', 'મ', 'ર', 'લ', 'શ', 'સ', 'હ', 'ળ', 'ક્ષ', 'જ્ઞ'
+  ];
 
   void _updateProgress() {
     int completedTicks = _isTickedList.where((isTicked) => isTicked).length;
@@ -22,7 +27,7 @@ class _ESignLearningPageState extends State<ESignLearningPage> {
 
   void _resetProgress() {
     setState(() {
-      _isTickedList = List<bool>.filled(26, false);
+      _isTickedList = List<bool>.filled(22, false);
       _progress = 0.0;
     });
   }
@@ -31,7 +36,7 @@ class _ESignLearningPageState extends State<ESignLearningPage> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('${letter}_is_completed', true);
 
-    int index = letter.codeUnitAt(0) - 65;
+    int index = gujaratiLetters.indexOf(letter);
     setState(() {
       _isTickedList[index] = true;
       _updateProgress();
@@ -42,7 +47,7 @@ class _ESignLearningPageState extends State<ESignLearningPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('UAreAble - English Sign Learning'),
+        title: Text('UAreAble - Gujarati Sign Learning'),
         backgroundColor: Colors.deepPurple,
         leading: IconButton(
           icon: Icon(Icons.menu),
@@ -118,7 +123,7 @@ class _ESignLearningPageState extends State<ESignLearningPage> {
               child: ListView.builder(
                 itemCount: totalLetters,
                 itemBuilder: (context, index) {
-                  String letter = String.fromCharCode(65 + index);
+                  String letter = gujaratiLetters[index];
                   return Card(
                     elevation: 5,
                     margin: EdgeInsets.symmetric(vertical: 10.0),
@@ -137,15 +142,14 @@ class _ESignLearningPageState extends State<ESignLearningPage> {
                         },
                       ),
                       onTap: () {
-                        EAlphabet alphabet = EAlphabet(
+                        GAlphabet alphabet = GAlphabet(
                           alphabet: letter,
-                          imagePath: 'assets/images/$letter.png', // Adjust the path as needed
                         );
 
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ESignLearninggg(
+                            builder: (context) => GSignLearninggg(
                               alphabet: alphabet,
                               onProgressUpdate: _handleProgressUpdate, // Pass callback
                             ),

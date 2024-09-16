@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'EAlphabet.dart';
-import 'ESignCam.dart';
+import 'GAlphabet.dart';
+import 'GSignCam.dart';
 
-class ESignLearninggg extends StatefulWidget {
-  final EAlphabet alphabet;
+class GSignLearninggg extends StatefulWidget {
+  final GAlphabet alphabet;
   final Function(String) onProgressUpdate;
 
-  ESignLearninggg({required this.alphabet, required this.onProgressUpdate});
+  GSignLearninggg({required this.alphabet, required this.onProgressUpdate});
 
   @override
-  _ESignLearningggState createState() => _ESignLearningggState();
+  _GSignLearningggState createState() => _GSignLearningggState();
 }
 
-class _ESignLearningggState extends State<ESignLearninggg> {
+class _GSignLearningggState extends State<GSignLearninggg> {
   double _progress = 0.0;
   int _tryCount = 0;
   final int maxTries = 10;
@@ -55,7 +55,7 @@ class _ESignLearningggState extends State<ESignLearninggg> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ESignCam(
+        builder: (context) => GSignCam(
           onDone: () {
             _incrementProgress(); // Increment progress when 'Done' is clicked
           },
@@ -85,7 +85,10 @@ class _ESignLearningggState extends State<ESignLearninggg> {
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Center(
-                child: Image.asset(widget.alphabet.imagePath),
+                child: Text(
+                  widget.alphabet.alphabet, // Display Gujarati letter
+                  style: TextStyle(fontSize: 100.0, color: Colors.deepPurple),
+                ),
               ),
             ),
             SizedBox(height: 30.0),

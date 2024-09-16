@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ur_able/ESignLearn/ESignLearning.dart';
+import 'package:ur_able/GSignLearn/GSignLearningPage.dart';
+import 'package:ur_able/Games/WordScrable/WordScrambleGame.dart';
+
 import 'package:ur_able/main.dart';
+
+import 'Games/GuessSignGame/GuessSignGame.dart';
 
 class HomePage_Card extends StatelessWidget {
   const HomePage_Card({super.key});
@@ -40,7 +45,7 @@ class HomePage_Card extends StatelessWidget {
               ),
               SizedBox(height: 15.0),
               buildSectionCard(Icons.language, 'English Sign Language',context, ESignLearningPage()),
-              buildSectionCard(Icons.translate, 'Gujarati Sign Language',context, ESignLearningPage()),
+              buildSectionCard(Icons.translate, 'Gujarati Sign Language',context, GSignLearningPage()),
               buildSectionCard(Icons.numbers, 'Number Signs',context, ESignLearningPage()),
               buildSectionCard(Icons.calculate, 'Math Tutorials',context, ESignLearningPage()),
               buildSectionCard(Icons.group, 'International Signs',context, ESignLearningPage()),
@@ -56,8 +61,8 @@ class HomePage_Card extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 15.0),
-              buildSectionCard(Icons.quiz_outlined, 'Memory Matching Game',context, ESignLearningPage()),
-              buildSectionCard(Icons.wordpress_rounded, 'Word Scramble',context, ESignLearningPage()),
+              buildSectionCard(Icons.quiz_outlined, 'Guess Sign Game',context, GuessSignGame()),
+              buildSectionCard(Icons.wordpress_rounded, 'Word Scramble',context, WordScrambleGame()),
               buildSectionCard(Icons.quiz_rounded, 'Flashcard Quizs',context, ESignLearningPage()),
 
               SizedBox(height: 30.0),
